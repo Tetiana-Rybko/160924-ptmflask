@@ -17,7 +17,7 @@ ENV_PATH = Path(BASE_DIR / ".env")
 load_dotenv(ENV_PATH)
 
 engine = create_engine(
-    url=os.getenv("SQLA_URL", Path(BASE_DIR / "sqlite3.db")),
+    url=os.getenv("SQLA_URL", f"sqlite:///{Path(BASE_DIR / 'sqlite3.db')}"),
     echo=True,
     echo_pool=True,
 )
