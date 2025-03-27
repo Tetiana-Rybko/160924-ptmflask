@@ -48,6 +48,7 @@ class Product(Base):
     price: Mapped[float] = mapped_column(Float, nullable=False)
     in_stock: Mapped[bool] = mapped_column(Boolean, default=False)
 
+
     category_id: Mapped[int] = mapped_column(Integer, ForeignKey('categories.id'))
     category: Mapped["Category"] = relationship("Category", back_populates="products")
 
