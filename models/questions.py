@@ -8,15 +8,20 @@ class Question(db.Model):
 
     id: Mapped[int] = mapped_column(
         db.Integer,
-        db.Identity(always=True),
         primary_key=True,
         autoincrement=True
     )
     text: Mapped[str] = mapped_column(
         db.String(255),
     )
+    category_id: Mapped[int] = mapped_column(
+        db.Integer,
+        db.ForeignKey("categories.id"),
+        nullable=True
+    )
 
     answers: Mapped[list['Answer']] = db.relationship('Answer', back_populates='question')
+    category: Mapped['Category'] = db.relationship('Category', back_populates='questions')
 
     def __repr__(self):
         return f'Question: {self.text}'
